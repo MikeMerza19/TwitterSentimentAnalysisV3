@@ -4,3 +4,4 @@ nltk
 plotly
 ntscraper
 deep_translator
+matplotlib
