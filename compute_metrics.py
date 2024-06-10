@@ -1,8 +1,8 @@
-from datasets import load_dataset, ClassLabel, load_metric
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
+# from datasets import load_dataset, ClassLabel, load_metric
+# from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 
-import numpy as np
-import evaluate
+# import numpy as np
+# import evaluate
 
 from sklearn.metrics import confusion_matrix, accuracy_score, f1_score, recall_score, precision_score
 from sklearn.naive_bayes import MultinomialNB

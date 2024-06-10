@@ -1,0 +1,6 @@
+scikit-learn
+datasets
+nltk
+plotly
+ntscraper
+deep_translator

@@ -1,5 +1,5 @@
 import streamlit as st
-import pandas as pd
+# import pandas as pd
 import helper_functions as hf
 
 st.set_page_config(

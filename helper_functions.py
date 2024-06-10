@@ -1,14 +1,14 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.feature_extraction.text import CountVectorizer
 
 
 import pandas as pd
 import numpy as np
 
-from datasets import load_dataset
-import datasets as ds
+# from datasets import load_dataset
+# import datasets as ds
 
 import nltk
 from nltk.corpus import stopwords
@@ -28,7 +28,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 
-from PIL import Image
+# from PIL import Image
 
 from ntscraper import Nitter
 
