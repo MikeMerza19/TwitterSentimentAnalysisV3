@@ -149,7 +149,7 @@ def plot_sentiment(tweet_df):
         title="<b>Sentiment Distribution</b>",
         color=sentiment_count.index,
         # set the color of positive to blue and negative to orange
-        color_discrete_map={"Possible Suicidal Post": "#EE4B2B", "Non-Suicide": "#33AAFF"},
+        color_discrete_map={"Possible suicidal post": "#EE4B2B", "Non-suicide": "#33AAFF"},
     )
     fig.update_traces(
         textposition="inside",
@@ -163,8 +163,8 @@ def plot_sentiment(tweet_df):
 
 def plot_probability(tweet_df):
     fig = go.Figure(data=[
-        go.Bar(name='Non-Suicide', x=tweet_df['Row No.'], y=tweet_df['proba_non_suicide'], marker_color="#33AAFF", text=tweet_df['proba_non_suicide'], textposition='auto', texttemplate='%{y:.1%}'),
-        go.Bar(name='Possible Suicidal Post', x=tweet_df['Row No.'], y=tweet_df['proba_suicide'], marker_color="#EE4B2B", text=tweet_df['proba_suicide'], textposition='auto', texttemplate='%{y:.1%}')
+        go.Bar(name='Non-suicide', x=tweet_df['Row No.'], y=tweet_df['proba_non_suicide'], marker_color="#33AAFF", text=tweet_df['proba_non_suicide'], textposition='auto', texttemplate='%{y:.1%}'),
+        go.Bar(name='Possible suicidal post', x=tweet_df['Row No.'], y=tweet_df['proba_suicide'], marker_color="#EE4B2B", text=tweet_df['proba_suicide'], textposition='auto', texttemplate='%{y:.1%}')
     ])
 
     fig.update_layout(barmode='group', title_text="<b>{}</b>".format('Sentiment Probability Result'))
@@ -181,7 +181,7 @@ def plot_table(tweet_df):
                             height=30,
                             align=['center', 'left', 'center', 'left'],
                             font_size=15,
-                            fill_color=[["rgb(238, 75, 43)" if x == "Possible Suicidal Post" else "rgb(51, 170, 255)" if x == "Non-Suicide" else "rgb(255, 255, 255)" for x in list(tweet_df['Sentiment'])],
+                            fill_color=[["rgb(238, 75, 43)" if x == "Possible suicidal post" else "rgb(51, 170, 255)" if x == "Non-suicide" else "rgb(255, 255, 255)" for x in list(tweet_df['Sentiment'])],
                                         'rgb(255, 255, 255)', 'rgb(255, 255, 255)', 'rgb(255, 255, 255)'])
                  
                  )

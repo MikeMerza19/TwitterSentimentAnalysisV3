@@ -92,12 +92,12 @@ try:
 
         with tab2:
             # make dashboard for tweets with suicide sentiment
-            tweet_df = st.session_state.df.query("Sentiment == 'Possible Suicidal Post'")
+            tweet_df = st.session_state.df.query("Sentiment == 'Possible suicidal post'")
             make_dashboard(tweet_df)
 
         with tab3:
             # make dashboard for tweets with Non-Suicide sentiment
-            tweet_df = st.session_state.df.query("Sentiment == 'Non-Suicide'")
+            tweet_df = st.session_state.df.query("Sentiment == 'Non-suicide'")
             make_dashboard(tweet_df)
             
 except Exception as ex:
