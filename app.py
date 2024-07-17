@@ -1,6 +1,28 @@
 import streamlit as st
 # import pandas as pd
 import helper_functions as hf
+from twikit import Client
+import asyncio
+
+USERNAME = 'Sungjinwo469791'
+EMAIL = 'mngsphllp@gmail.com'
+PASSWORD = 'pogiako123'
+
+client = Client(language='en-US')
+
+client = Client(language='en-US')
+
+async def main():
+    await client.login(
+            auth_info_1=USERNAME,
+            auth_info_2=EMAIL,
+            password=PASSWORD    
+    )
+asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+asyncio.run(main())
+
+client.save_cookies('cookies.json')
+client.load_cookies(path='cookies.json')  
 
 st.set_page_config(
     page_title="Twitter Sentiment/Emotional Distress Analyzer", page_icon="📊", layout="wide" 
@@ -15,12 +37,14 @@ st.markdown(adjust_top_pad, unsafe_allow_html=True)
 
 def search_callback():
     try:
-        st.session_state.df = hf.get_latest_tweet_df(
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+        st.session_state.df = asyncio.run(hf.get_latest_tweet_df(
             st.session_state.username, st.session_state.number_of_tweets
-        )      
+        ))      
         st.session_state.df = hf.predict_sentiment(st.session_state.df)
-    except:
+    except Exception as ex:
         st.toast('Warning!', icon="⚠️")
+        print(ex)
     # print(hf.get_latest_tweet_df(st.session_state.username, st.session_state.number_of_tweets))  
 
 

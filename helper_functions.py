@@ -27,26 +27,37 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
-
-# from PIL import Image
-
 from ntscraper import Nitter
 
 
 from deep_translator import GoogleTranslator
 
+from twikit import Client
 
 scraper = Nitter()
+
+
+client = Client(language='en-US')
+
 
 source_lang = "tl"
 translated_to = "en"
 
-def get_latest_tweet_df(username, number_of_tweets):    
-    tweets = scraper.get_tweets(username, mode = "user", number = number_of_tweets)
+async def get_latest_tweet_df(username, number_of_tweets):        
     final_tweets = []
+
+    client.load_cookies(path='cookies.json') 
+
+    user = await client.get_user_by_screen_name(username)
     
-    for tweet in tweets['tweets']:
-        data = [tweet['is-retweet'], tweet['user']['name'], tweet['date'], tweet['text']]
+    tweets = await user.get_tweets('Tweets', count=int(number_of_tweets))
+    
+    for tweet in tweets:
+        retweet = False
+        if 'RT @' in tweet.text:
+            retweet = True
+
+        data = [retweet, tweet.user.name, tweet.created_at_datetime, tweet.text]
         final_tweets.append(data)
 
     tweet_df = pd.DataFrame(
@@ -115,7 +126,7 @@ def predict_sentiment(tweet_df):
     y = df.values[:, 3]
     X = vectorizer.fit_transform(df.values[:, 2])
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=1000)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1000)
 
     clf = MultinomialNB()
     clf.fit(X_train, y_train) 
