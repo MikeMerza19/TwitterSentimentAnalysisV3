@@ -18,7 +18,7 @@ async def main():
             auth_info_2=EMAIL,
             password=PASSWORD    
     )
-asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    
 asyncio.run(main())
 
 client.save_cookies('cookies.json')
@@ -37,7 +37,6 @@ st.markdown(adjust_top_pad, unsafe_allow_html=True)
 
 def search_callback():
     try:
-        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
         st.session_state.df = asyncio.run(hf.get_latest_tweet_df(
             st.session_state.username, st.session_state.number_of_tweets
         ))      
