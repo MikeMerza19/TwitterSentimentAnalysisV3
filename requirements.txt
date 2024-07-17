@@ -5,3 +5,4 @@ plotly
 ntscraper
 deep_translator
 matplotlib
+twikit
